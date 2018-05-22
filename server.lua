@@ -55,6 +55,9 @@ AddEventHandler('bank:transfer', function(to, amountt)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local zPlayer = ESX.GetPlayerFromId(to)
+	-- Transform numbers to names
+	local xName   = GetPlayerName(_source)
+	local zName   = GetPlayerName(to)
 	local balance = 0
 	balance = xPlayer.getAccount('bank').money
 	zbalance = zPlayer.getAccount('bank').money
@@ -70,8 +73,8 @@ AddEventHandler('bank:transfer', function(to, amountt)
 			xPlayer.removeAccountMoney('bank', amountt)
 			zPlayer.addAccountMoney('bank', amountt)
                         -- advanced notification with bank icon
-                        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transfer Money', 'You transfered ~r~$' .. amountt .. '~s~ to ~r~' .. to .. ' .', 'CHAR_BANK_MAZE', 9)
-			TriggerClientEvent('esx:showAdvancedNotification', to, 'Bank', 'Transfer Money', 'You received ~r~$' .. amountt .. '~s~ from ~r~' .. _source .. ' .', 'CHAR_BANK_MAZE', 9)
+                        TriggerClientEvent('esx:showAdvancedNotification', _source, 'Bank', 'Transfer Money', 'You transfered ~r~$' .. amountt .. '~s~ to ~r~' .. zName .. ' .', 'CHAR_BANK_MAZE', 9)
+			TriggerClientEvent('esx:showAdvancedNotification', to, 'Bank', 'Transfer Money', 'You received ~r~$' .. amountt .. '~s~ from ~r~' .. xName .. ' .', 'CHAR_BANK_MAZE', 9)
 		end
 		
 	end
